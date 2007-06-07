@@ -1,0 +1,2 @@
+PKG_LIBS = -Lwin32 -lproj
+PKG_CPPFLAGS = -Iwin32

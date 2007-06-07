@@ -1,0 +1,24 @@
+NEWS/ChangeLog for proj4 R package
+
+1.0-3	2007-06-06
+    *	add Windows support
+
+1.0-2
+    *	update documentation
+
+    *	add support for datum transformation via ptransform()
+
+1.0-1
+    *	add a namespace
+
+    *	allow projection parameters to be specified in a more flexible
+	way including a named vector c(proj='utm',zone=15), a
+	list list(proj='utm',zone=15) and an unnamed arguments
+	vector c('+proj=utm','+zone=15').
+
+1.0-0
+    *	initial version (an intereface to pj_fwd and pj_inv)
+
+
+Note for Windows: This package contains a static proj4.5.0 binary for
+Windows. The NAD files are expected to be installed in c:\proj
