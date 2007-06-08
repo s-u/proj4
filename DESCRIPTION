@@ -1,5 +1,5 @@
 Package: proj4
-Version: 1.0-3
+Version: 1.0-4
 Title: A simple interface to the PROJ.4 cartographic projections library 
 Depends: R (>= 2.0.0)
 Author: Simon Urbanek <simon.urbanek@r-project.org>

@@ -1,5 +1,11 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-4	2007-06-08
+    *	add ellps.default to project() (PROJ4.5.0 always requires an
+	ellipsoid or datum)
+
+    *	fix examples to work with PROJ4.5.0
+
 1.0-3	2007-06-06
     *	add Windows support
 

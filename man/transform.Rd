@@ -27,10 +27,16 @@ ptransform(data, src.proj, dst.proj, silent=TRUE)
   When the list form is used, inputs are recycled with a warning when
   necessary. All unspecified coordinates are set to zero.
 
-  Note that datum files must be installed in order to be able to perform
-  datum shifts.
+  Note that the project specification \emph{must} include an ellipsoid
+  or a datum. Add \code{ellps='sphere'} to obtain the same result as
+  older PROJ.4 versions with no datum specification.
   
-  Full details of projection arguments available from website below.
+  Datum files must be installed in order to be able to perform datum
+  shifts (on Windows they should be located in \code{c:\proj}) - see
+  PROJ.4 website for the download of datum files.
+  
+  A list of some commonly used projections can be found at
+  \url{http://www.remotesensing.org/geotiff/proj_list/},
 }
 \value{
   A matrix with three columns or list with projected coordinates. If the
@@ -44,7 +50,8 @@ data(state)
 sc <- cbind(state.center$x, state.center$y)
 ## this is essentially the same as project except
 ## that the default lat/long input is in radians
-tr <- ptransform(sc/180*pi, '+proj=latlong', '+proj=merc')
+tr <- ptransform(sc/180*pi, '+proj=latlong +ellps=sphere',
+                 '+proj=merc +ellps=sphere')
 ## we can compare it with the project result
 res <- project(sc, c(proj="merc"))
 ## ptransform has z coordinate which is 0 for this projection

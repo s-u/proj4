@@ -6,7 +6,8 @@
 Projection of lat/long coordinates or its inverse.
 }
 \usage{
-project(xy, proj, inverse = FALSE, degrees = TRUE, silent = FALSE)
+project(xy, proj, inverse = FALSE, degrees = TRUE, silent = FALSE,
+        ellps.default="sphere")
 }
 
 \arguments{
@@ -18,6 +19,12 @@ project(xy, proj, inverse = FALSE, degrees = TRUE, silent = FALSE)
   \item{degrees}{ if \code{TRUE} then the lat/long data is assumed to be
     in degrees, otherwise in radians }
   \item{silent}{ if set to \code{TRUE}, warnings will be suppressed }
+  \item{ellps.default}{default ellipsoid that will be added if no datum
+  or ellipsoid parameter is specified in \code{proj}. Older versions of
+  PROJ.4 didn't require a datum (and used sphere by default), but 4.5.0
+  and higher always require a datum or an ellipsoid. Set to \code{NA} if
+  no datum should be added to \code{proj} (e.g. if you specify an
+  ellipsoid directly).}
 }
 \details{
   The input can be a list of two or more vectors (if the list contains

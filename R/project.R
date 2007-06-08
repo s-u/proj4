@@ -2,8 +2,8 @@
 #
 # part of proj4 R package, license: GPL v2
 
-project <- function(xy, proj, inverse=FALSE, degrees=TRUE, silent=FALSE) {
-    proj <- .proj2char(proj)
+project <- function(xy, proj, inverse=FALSE, degrees=TRUE, silent=FALSE, ellps.default="sphere") {
+    proj <- .proj2char(proj, ellps.default=ellps.default)
     if (is.list(xy)) {
         if (length(xy)<2) stop("input must be at least 2-dimensional")
         if (length(xy)>2 && !silent) warning("more than two dimensions found, using first two")
