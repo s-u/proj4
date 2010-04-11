@@ -32,7 +32,7 @@ ptransform(data, src.proj, dst.proj, silent=TRUE)
   older PROJ.4 versions with no datum specification.
   
   Datum files must be installed in order to be able to perform datum
-  shifts (on Windows they should be located in \code{c:\proj}) - see
+  shifts (on Windows they should be located in \code{c:\\proj}) - see
   PROJ.4 website for the download of datum files.
   
   A list of some commonly used projections can be found at
