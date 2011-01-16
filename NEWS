@@ -1,7 +1,10 @@
 NEWS/ChangeLog for proj4 R package
 
-1.0-5	(under development)
+1.0-5	2011-01-16
     *	fixed a minor typo in the docs
+
+    *	changed license specification from verbatim form to
+	a form that R likes better
 
 1.0-4	2007-06-08
     *	add ellps.default to project() (PROJ4.5.0 always requires an
