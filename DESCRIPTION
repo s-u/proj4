@@ -9,5 +9,5 @@ Description: A simple interface to lat/long projection and datum
 	     allows transformation of geographic coordinates from one projection
 	     and/or datum to another.
 SystemRequirements: proj 4.4.6 or higher (http://proj.maptools.org/)
-License: GPL version 2.
+License: GPL-2
 URL: http://www.rforge.net/proj4/
