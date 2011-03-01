@@ -8,12 +8,21 @@ if test -z "${R_HOME}"; then
 fi
 RBIN="${R_HOME}/bin/R"
 
+# honor PKG_xx overrides
+LIBS="${LIBS} ${PKG_LIBS}"
+CPPFLAGS="${CPPFLAGS} ${PKG_CPPFLAGS}"
+
+# pick all flags for testing from R
 : ${CC=`"${RBIN}" CMD config CC`}
 : ${CPP=`"${RBIN}" CMD config CPP`}
 : ${CFLAGS=`"${RBIN}" CMD config CFLAGS`}
+: ${CPPFLAGS=`"${RBIN}" CMD config CPPFLAGS`}
+: ${LDFLAGS=`"${RBIN}" CMD config LDFLAGS`}
 
 # honor PKG_xx overrides
 LIBS="${LIBS} ${PKG_LIBS}"
+# for CPPFLAGS we will superfluously double R's flags
+# since we'll set PKG_CPPFLAGS with this, but that shouldn't hurt
 CPPFLAGS="${CPPFLAGS} ${PKG_CPPFLAGS}"
 
 proj4ok=yes

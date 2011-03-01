@@ -1,5 +1,10 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-7	(under development)
+    *	use R's CPPFLAGS and LDFLAGS for testing in configure,
+	addressing issues on systems with non-default proj4
+	location which is known by R.
+
 1.0-6	2011-01-31
     *	Update bundled PROJ.4 library for Windows to 4.7.0 and
 	include both 32-bit and 64-bit binaries
