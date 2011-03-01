@@ -8,10 +8,6 @@ if test -z "${R_HOME}"; then
 fi
 RBIN="${R_HOME}/bin/R"
 
-# honor PKG_xx overrides
-LIBS="${LIBS} ${PKG_LIBS}"
-CPPFLAGS="${CPPFLAGS} ${PKG_CPPFLAGS}"
-
 # pick all flags for testing from R
 : ${CC=`"${RBIN}" CMD config CC`}
 : ${CPP=`"${RBIN}" CMD config CPP`}
