@@ -1,6 +1,6 @@
 NEWS/ChangeLog for proj4 R package
 
-1.0-7	(under development)
+1.0-7	2011-12-10
     *	use R's CPPFLAGS and LDFLAGS for testing in configure,
 	addressing issues on systems with non-default proj4
 	location which is known by R.
