@@ -1,6 +1,6 @@
 ## use local winbuilder libraries if present - no need to set any paths in that case
 ifeq ($(strip $(shell if test -e "$(LOCAL_SOFT)/include/proj_api.h"; then echo 1; fi)),1)
-PKG_LIBS = -lproj4
+PKG_LIBS = -lproj
 else
 ## detect 64-bit Windows
 ifeq ($(WIN),64)
