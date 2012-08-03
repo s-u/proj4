@@ -3,7 +3,7 @@
 echo "  checking PROJ4 headers and libraries"
 allok=yes
 
-if [ -e "${LOCAL_SOFT}/include/proj_api.h" ]; thrn
+if [ -e "${LOCAL_SOFT}/include/proj_api.h" ]; then
     echo " --- Using local version of PROJ4 found in LOCAL_SOFT: ${LOCAL_SOFT}"
     echo " --- Proceed at your own risk, if in doubt unset LOCAL_SOFT to use our binary."
     exit 0
