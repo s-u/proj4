@@ -1,5 +1,10 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-8	(under development)
+    *	remove Windows binaries from the source package, respect
+	LOCAL_SOFT environment variable to use local copy,
+	otherwise fetch Windows binaries from RForge.net
+
 1.0-7	2011-12-10
     *	use R's CPPFLAGS and LDFLAGS for testing in configure,
 	addressing issues on systems with non-default proj4

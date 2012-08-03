@@ -1,3 +1,8 @@
+## use local winbuilder libraries if present
+ifeq ($(strip $(shell if test -e "$(LOCAL_SOFT)/include/proj_api.h"; then echo 1; fi)),1)
+PKG_CPPFLAGS = -I$(LOCAL_SOFT)/include
+PKG_LIBS = -L$(LOCAL_SOFT)/lib -lproj4
+else
 ## detect 64-bit Windows
 ifeq ($(strip $(shell $(R_HOME)/bin/R --slave -e 'cat(.Machine$$sizeof.pointer)')),8)
 PKG_LIBS = -Lwin64 -lproj
@@ -5,4 +10,5 @@ PKG_CPPFLAGS = -Iwin64
 else
 PKG_LIBS = -Lwin32 -lproj
 PKG_CPPFLAGS = -Iwin32
+endif
 endif
