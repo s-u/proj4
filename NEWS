@@ -1,6 +1,6 @@
 NEWS/ChangeLog for proj4 R package
 
-1.0-8	(under development)
+1.0-8	2012-08-04
     *	remove Windows binaries from the source package, respect
 	LOCAL_SOFT environment variable to use local copy,
 	otherwise fetch Windows binaries from RForge.net
