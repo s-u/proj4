@@ -1,5 +1,11 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-9
+    *	2x2 input in project() was ambiguous, it is now defined
+	that columns are taken as x and y. Note that previously
+	rows were taken which is unintuitive and could lead to bugs
+	that are hard to detect.
+
 1.0-8	2012-08-04
     *	remove Windows binaries from the source package, respect
 	LOCAL_SOFT environment variable to use local copy,

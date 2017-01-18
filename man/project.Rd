@@ -30,7 +30,8 @@ project(xy, proj, inverse = FALSE, degrees = TRUE, silent = FALSE,
   The input can be a list of two or more vectors (if the list contains
   more than two entries, only first two entries are used and a warning
   is issued), a two-dimensional matrix or array (the number of columns
-  or rows must be exactly two) or a vector of the length 2. If the input
+  or rows must be exactly two) or a vector of the length 2. For a 2x2
+  input the columns are taken as \code{x} and \code{y}. If the input
   is a list then the result will be a list with the entries named
   \code{x} and \code{y}, otherwise the result is a matrix with two
   columns.

@@ -17,12 +17,12 @@ project <- function(xy, proj, inverse=FALSE, degrees=TRUE, silent=FALSE, ellps.d
         } else {
             if (length(d) != 2 || (d[1]!=2 && d[2]!=2))
                 stop("input must be 2-dimensional")
-            if (d[1]==2) {
-                x <- xy[1,]
-                y <- xy[2,]
-            } else {
+            if (d[2]==2) { ## use columns by default if available
                 x <- xy[,1]
                 y <- xy[,2]
+            } else {
+                x <- xy[1,]
+                y <- xy[2,]
             }
         }
     }
