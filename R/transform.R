@@ -48,7 +48,7 @@ ptransform <- function(data, src.proj, dst.proj, silent=TRUE) {
         if (!silent) warning("z is shorter than some of the others, recycling")
         z <- rep(z, length.out=n)
     }
-    res <- .C("transform",
+    res <- .C(transform_,
               as.character(src.proj), as.character(dst.proj),
               as.integer(n),
               x=as.double(x), y=as.double(y), z=as.double(z),

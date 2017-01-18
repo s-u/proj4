@@ -40,7 +40,7 @@ project <- function(xy, proj, inverse=FALSE, degrees=TRUE, silent=FALSE, ellps.d
     f <- 0:0
     if (inverse) f <- f + 1:1
     if (degrees) f <- f + 2:2
-    res <- .C("project", as.character(proj),                
+    res <- .C(project_, as.character(proj),
               as.integer(n), x=as.double(x), y=as.double(y),
               f, NAOK=TRUE, PACKAGE=.package.name)
     if (is.list(xy))

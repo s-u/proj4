@@ -1,1 +1,2 @@
+useDynLib(proj4, project_, transform_)
 export(project, ptransform)

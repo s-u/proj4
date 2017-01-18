@@ -10,7 +10,7 @@
 
 /* .C is more efficient here, because we can re-use the vectors */
 
-void project(char **proj, int *n, double *x, double *y, int *f){
+void project_(char **proj, int *n, double *x, double *y, int *f){
   projUV c;
   projPJ pj;
   int i = 0, j = *n, deg = (*f & F_DEG), inv = (*f & F_INVERSE);
@@ -49,7 +49,7 @@ void project(char **proj, int *n, double *x, double *y, int *f){
   pj_free(pj);
 }
 
-void transform(char **psrc, char **pdst, int *n, double *x, double *y, double *z) {
+void transform_(char **psrc, char **pdst, int *n, double *x, double *y, double *z) {
   projPJ ps, pd;
   int r;
 
