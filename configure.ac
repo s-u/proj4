@@ -21,13 +21,49 @@ LIBS="${LIBS} ${PKG_LIBS}"
 # since we'll set PKG_CPPFLAGS with this, but that shouldn't hurt
 CPPFLAGS="${CPPFLAGS} ${PKG_CPPFLAGS}"
 
-proj4ok=yes
-AC_CHECK_HEADERS(proj_api.h,,proj4ok=no)
-AC_CHECK_LIB(proj,pj_init_plus,,proj4ok=no)
-if test "${proj4ok}" = no; then
-   AC_MSG_ERROR([libproj and/or proj_api.h not found in standard search locations.
+AC_ARG_ENABLE([proj6],
+  AS_HELP_STRING(--enable-proj6, [use the new PROJ6 API even if PROJ4 API is available. The default is @<:@disable@:>@ since PROJ6 API has issues, use with caution.]),
+  [with_proj6=$withval], [with_proj6=no])
 
-*** Install PROJ.4 and if necessary set PKG_CPPFLAGS/PKG_LIBS accordingly.])
+# unless forced, try to use PROJ4 first
+proj4ok=yes
+use6=no
+
+AC_CHECK_HEADERS(proj_api.h,,[
+  AC_MSG_CHECKING([with ACCEPT_USE_OF_DEPRECATED_PROJ_API_H])
+  AC_MSG_RESULT([])
+  savCPPFLAGS="$CPPFLAGS"
+  CPPFLAGS="-DACCEPT_USE_OF_DEPRECATED_PROJ_API_H=1 $CPPFLAGS"
+  unset ac_cv_header_proj_api_h
+  AC_CHECK_HEADERS(proj_api.h,,[
+    CPPFLAGS="$savCPPFLAGS"
+    AC_CHECK_HEADERS(proj.h, use6=yes, proj4ok=no)
+  ])
+])
+AC_CHECK_LIB(proj,pj_init_plus,,[
+  use6=yes
+  AC_CHECK_LIB(proj,proj_create_crs_to_crs,, proj4ok=no)
+])
+
+AC_MSG_CHECKING([whether to require PROJ6 API])
+if test x"${with_proj6}" = xno; then
+   AC_MSG_RESULT([no])
+ else
+  AC_MSG_RESULT([yes])
+  use6=yes
+  AC_CHECK_HEADERS(proj.h,, proj4ok=no)
+  AC_CHECK_LIB(proj,proj_create_crs_to_crs,, proj4ok=no)
+fi
+
+AC_MSG_CHECKING([whether to use PROJ6 API])
+AC_MSG_RESULT([$use6])
+if test "x$use6" = xyes; then
+   CPPFLAGS="${PKG_CPPFLAGS} -DUSE_PROJ6_API=1"
+fi
+if test "${proj4ok}" = no; then
+   AC_MSG_ERROR([libproj and/or proj.h/proj_api.h not found in standard search locations.
+
+*** Install PROJ library and if necessary set PKG_CPPFLAGS/PKG_LIBS accordingly.])
 fi
 
 AC_ARG_VAR([PKG_CPPFLAGS],[custom C preprocessor flags for packages compilation])
@@ -35,5 +71,3 @@ AC_ARG_VAR([PKG_LIBS],[custom libraries for package compilation])
 
 AC_CONFIG_FILES(src/Makevars)
 AC_OUTPUT
-
-

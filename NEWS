@@ -1,6 +1,20 @@
 NEWS/ChangeLog for proj4 R package
 
 1.0-9
+    *	update proj4 to support PROJ5 and PROJ6. Given all the issues
+	with the new PROJ6 API we try to use PROJ4 API wherever
+	possible. It is, however, possible to force the use of PROJ6
+	API even if PROJ4 is available by specifying --enable-proj6
+	configure flag. This should be only used with caution as it
+	may have adverse effects on the projection results.
+
+	When PROJ6 API is used, we are applying a heuristic
+	in ptransform() to try to detect whether degrees are expected
+	by PROJ6 instead of radians previously and will convert
+	coordinates automatically to preserve the PROJ4 behavior.
+
+    *	use NAMESPACE C symbol registration
+
     *	2x2 input in project() was ambiguous, it is now defined
 	that columns are taken as x and y. Note that previously
 	rows were taken which is unintuitive and could lead to bugs
