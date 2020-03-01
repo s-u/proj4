@@ -1,6 +1,6 @@
 NEWS/ChangeLog for proj4 R package
 
-1.0-9
+1.0-9	2020-03-02
     *	update proj4 to support PROJ5 and PROJ6. Given all the issues
 	with the new PROJ6 API we try to use PROJ4 API wherever
 	possible. It is, however, possible to force the use of PROJ6
