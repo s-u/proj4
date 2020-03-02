@@ -34,15 +34,12 @@ ptransform(data, src.proj, dst.proj, silent=TRUE)
   Datum files must be installed in order to be able to perform datum
   shifts (on Windows they should be located in \code{c:\\proj}) - see
   PROJ.4 website for the download of datum files.
-  
-  A list of some commonly used projections can be found at
-  \url{http://www.remotesensing.org/geotiff/proj_list/},
 }
 \value{
   A matrix with three columns or list with projected coordinates. If the
   input was a list then the output will be a list, otherwise a matrix.
 }
-\references{\url{http://www.remotesensing.org/proj/}}
+\references{\url{https://proj.org/}}
 \author{Simon Urbanek}
 
 \examples{

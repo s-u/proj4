@@ -48,9 +48,6 @@ project(xy, proj, inverse = FALSE, degrees = TRUE, silent = FALSE,
   or a named vector or list that will be composed into parameters:
   \code{list(proj="lcc", lat_1=33, lat_2=45, lat_0=39, lon_0=-96)}
 
-  A list of some commonly used projections can be found at
-  \url{http://www.remotesensing.org/geotiff/proj_list/}
-  
   if \code{degrees} is \code{TRUE} then the latitude and longitude are
   expected to be in degrees, if \code{FALSE} then in radians.
 }
@@ -58,7 +55,7 @@ project(xy, proj, inverse = FALSE, degrees = TRUE, silent = FALSE,
   A two column matrix or list of coordinates. If the input was a list
   then the output will be a list, otherwise a matrix.
 }
-\references{\url{http://www.remotesensing.org/proj/}}
+\references{\url{https://proj.org/}}
 
 \examples{
 ## this is just very simple, because we don't want to depend on
