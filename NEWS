@@ -1,5 +1,8 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-10.1 (CRAN NMU, Brian Ripley)
+    *	force C++ in configure tests
+
 1.0-10	2020-03-03
     *	remove dead links from the documentation
 

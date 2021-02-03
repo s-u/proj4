@@ -14,6 +14,8 @@ RBIN="${R_HOME}/bin/R"
 : ${CPPFLAGS=`"${RBIN}" CMD config CPPFLAGS`}
 : ${LDFLAGS=`"${RBIN}" CMD config LDFLAGS`}
 : ${CPP="$CC -E"}
+: ${CXX=`"${RBIN}" CMD config CXX`}
+: ${CXXFLAGS=`"${RBIN}" CMD config CXXFLAGS`}
 
 # honor PKG_xx overrides
 LIBS="${LIBS} ${PKG_LIBS}"
@@ -40,6 +42,11 @@ AC_CHECK_HEADERS(proj_api.h,,[
     AC_CHECK_HEADERS(proj.h, use6=yes, proj4ok=no)
   ])
 ])
+
+dnl changes needed for static PROJ 6
+AC_LANG(C++)
+LIBS="${LIBS} ${PKG_LIBS} -lsqlite3"
+
 AC_CHECK_LIB(proj,pj_init_plus,,[
   use6=yes
   AC_CHECK_LIB(proj,proj_create_crs_to_crs,, proj4ok=no)
