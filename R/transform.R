@@ -52,7 +52,7 @@ ptransform <- function(data, src.proj, dst.proj, silent=TRUE) {
               as.character(src.proj), as.character(dst.proj),
               as.integer(n),
               x=as.double(x), y=as.double(y), z=as.double(z),
-              NAOK=TRUE, PACKAGE=.package.name)
+              NAOK=TRUE)
 
     if (is.list(data))
         list(x=res$x, y=res$y, z=res$z)
