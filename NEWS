@@ -1,5 +1,12 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-11	2022-01-31
+    *	improve detection of correct flags using pkg-config where
+	available including static versions. Unless --enable-proj6
+	is used it will use proj4 API if avaiable.
+
+    *	add support for UCRT Windows builds
+
 1.0-10.1 (CRAN NMU, Brian Ripley)
     *	force C++ in configure tests
 
