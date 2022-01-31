@@ -70,6 +70,7 @@ if test x${proj4api} = xyes; then
    AC_CHECK_LIB(proj, pj_init_plus,, [
       unset ac_cv_lib_proj_pj_init_plus
       ## try static
+      AC_MSG_NOTICE([Retrying with pkg-config --static])
       PROJ_LIBSS=`pkg-config --static --libs proj`
       LIBS="${LIBS_SAVE} ${PROJ_LIBSS}"
       AC_CHECK_LIB(proj, pj_init_plus, [
@@ -81,15 +82,23 @@ if test x${proj4api} = xyes; then
    ])
 fi
 
+# If p4 is available LIBS will have the proj4 flags
+# so save it in case 6 doesn't work out
+PRE6_LIBS=${LIBS}
+
 # check PROJ6 API - it is mandatory if use6=yes
 AC_CHECK_HEADERS(proj.h,,proj6api=no)
 
 AC_CHECK_LIB(proj, proj_create_crs_to_crs,,[
     unset ac_cv_lib_proj_proj_create_crs_to_crs
     ## try static
+    AC_MSG_NOTICE([Retrying with pkg-config --static])
     PROJ_LIBS=`pkg-config --static --libs proj`
     LIBS="${LIBS_SAVE} ${PROJ_LIBS}"
-    AC_CHECK_LIB(proj, proj_create_crs_to_crs,, proj6api=no)
+    AC_CHECK_LIB(proj, proj_create_crs_to_crs,, [
+        proj6api=no
+        LIBS=${PRE6_LIBS}
+    ])
 ])
 
 AC_MSG_NOTICE([PROJ4 API available: ${proj4api}])

@@ -2948,6 +2948,8 @@ else $as_nop
 
       unset ac_cv_lib_proj_pj_init_plus
       ## try static
+      { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Retrying with pkg-config --static" >&5
+printf "%s\n" "$as_me: Retrying with pkg-config --static" >&6;}
       PROJ_LIBSS=`pkg-config --static --libs proj`
       LIBS="${LIBS_SAVE} ${PROJ_LIBSS}"
       { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for pj_init_plus in -lproj" >&5
@@ -3000,6 +3002,10 @@ fi
 fi
 
 fi
+
+# If p4 is available LIBS will have the proj4 flags
+# so save it in case 6 doesn't work out
+PRE6_LIBS=${LIBS}
 
 # check PROJ6 API - it is mandatory if use6=yes
        for ac_header in proj.h
@@ -3059,6 +3065,8 @@ else $as_nop
 
     unset ac_cv_lib_proj_proj_create_crs_to_crs
     ## try static
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Retrying with pkg-config --static" >&5
+printf "%s\n" "$as_me: Retrying with pkg-config --static" >&6;}
     PROJ_LIBS=`pkg-config --static --libs proj`
     LIBS="${LIBS_SAVE} ${PROJ_LIBS}"
     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for proj_create_crs_to_crs in -lproj" >&5
@@ -3102,7 +3110,10 @@ then :
   LIBS="-lproj $LIBS"
 
 else $as_nop
-  proj6api=no
+
+        proj6api=no
+        LIBS=${PRE6_LIBS}
+
 fi
 
 
