@@ -89,13 +89,13 @@ PRE6_LIBS=${LIBS}
 # check PROJ6 API - it is mandatory if use6=yes
 AC_CHECK_HEADERS(proj.h,,proj6api=no)
 
-AC_CHECK_LIB(proj, proj_create_crs_to_crs,,[
-    unset ac_cv_lib_proj_proj_create_crs_to_crs
+AC_CHECK_LIB(proj, proj_get_source_crs,,[
+    unset ac_cv_lib_proj_proj_get_source_crs
     ## try static
     AC_MSG_NOTICE([Retrying with pkg-config --static])
     PROJ_LIBS=`pkg-config --static --libs proj`
     LIBS="${LIBS_SAVE} ${PROJ_LIBS}"
-    AC_CHECK_LIB(proj, proj_create_crs_to_crs,, [
+    AC_CHECK_LIB(proj, proj_get_source_crs,, [
         proj6api=no
         LIBS=${PRE6_LIBS}
     ])
@@ -119,14 +119,14 @@ fi
 
 if test x$use6 = xyes -a x${proj6api} = xno; then
    AC_MSG_ERROR([Cannot find working proj.h headers and library.
-
-*** You may need to install libproj-dev or similar.])
+*** You may need to install libproj-dev or similar! ***
+])
 fi
 
 if test x$use6 = xno -a x${proj4api} = xno; then
    AC_MSG_ERROR([Cannot find working proj_api.h headers and library.
-
-*** You may need to install libproj-dev or similar.])
+*** You may need to install libproj-dev or similar! ***
+])
 fi
 
 AC_MSG_CHECKING([whether to use PROJ6 API])

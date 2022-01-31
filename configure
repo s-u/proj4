@@ -3021,9 +3021,9 @@ fi
 
 done
 
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for proj_create_crs_to_crs in -lproj" >&5
-printf %s "checking for proj_create_crs_to_crs in -lproj... " >&6; }
-if test ${ac_cv_lib_proj_proj_create_crs_to_crs+y}
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for proj_get_source_crs in -lproj" >&5
+printf %s "checking for proj_get_source_crs in -lproj... " >&6; }
+if test ${ac_cv_lib_proj_proj_get_source_crs+y}
 then :
   printf %s "(cached) " >&6
 else $as_nop
@@ -3033,29 +3033,29 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
 namespace conftest {
-  extern "C" int proj_create_crs_to_crs ();
+  extern "C" int proj_get_source_crs ();
 }
 int
 main (void)
 {
-return conftest::proj_create_crs_to_crs ();
+return conftest::proj_get_source_crs ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_cxx_try_link "$LINENO"
 then :
-  ac_cv_lib_proj_proj_create_crs_to_crs=yes
+  ac_cv_lib_proj_proj_get_source_crs=yes
 else $as_nop
-  ac_cv_lib_proj_proj_create_crs_to_crs=no
+  ac_cv_lib_proj_proj_get_source_crs=no
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.beam \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_proj_proj_create_crs_to_crs" >&5
-printf "%s\n" "$ac_cv_lib_proj_proj_create_crs_to_crs" >&6; }
-if test "x$ac_cv_lib_proj_proj_create_crs_to_crs" = xyes
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_proj_proj_get_source_crs" >&5
+printf "%s\n" "$ac_cv_lib_proj_proj_get_source_crs" >&6; }
+if test "x$ac_cv_lib_proj_proj_get_source_crs" = xyes
 then :
   printf "%s\n" "#define HAVE_LIBPROJ 1" >>confdefs.h
 
@@ -3063,15 +3063,15 @@ then :
 
 else $as_nop
 
-    unset ac_cv_lib_proj_proj_create_crs_to_crs
+    unset ac_cv_lib_proj_proj_get_source_crs
     ## try static
     { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Retrying with pkg-config --static" >&5
 printf "%s\n" "$as_me: Retrying with pkg-config --static" >&6;}
     PROJ_LIBS=`pkg-config --static --libs proj`
     LIBS="${LIBS_SAVE} ${PROJ_LIBS}"
-    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for proj_create_crs_to_crs in -lproj" >&5
-printf %s "checking for proj_create_crs_to_crs in -lproj... " >&6; }
-if test ${ac_cv_lib_proj_proj_create_crs_to_crs+y}
+    { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for proj_get_source_crs in -lproj" >&5
+printf %s "checking for proj_get_source_crs in -lproj... " >&6; }
+if test ${ac_cv_lib_proj_proj_get_source_crs+y}
 then :
   printf %s "(cached) " >&6
 else $as_nop
@@ -3081,29 +3081,29 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
 namespace conftest {
-  extern "C" int proj_create_crs_to_crs ();
+  extern "C" int proj_get_source_crs ();
 }
 int
 main (void)
 {
-return conftest::proj_create_crs_to_crs ();
+return conftest::proj_get_source_crs ();
   ;
   return 0;
 }
 _ACEOF
 if ac_fn_cxx_try_link "$LINENO"
 then :
-  ac_cv_lib_proj_proj_create_crs_to_crs=yes
+  ac_cv_lib_proj_proj_get_source_crs=yes
 else $as_nop
-  ac_cv_lib_proj_proj_create_crs_to_crs=no
+  ac_cv_lib_proj_proj_get_source_crs=no
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.beam \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_proj_proj_create_crs_to_crs" >&5
-printf "%s\n" "$ac_cv_lib_proj_proj_create_crs_to_crs" >&6; }
-if test "x$ac_cv_lib_proj_proj_create_crs_to_crs" = xyes
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_proj_proj_get_source_crs" >&5
+printf "%s\n" "$ac_cv_lib_proj_proj_get_source_crs" >&6; }
+if test "x$ac_cv_lib_proj_proj_get_source_crs" = xyes
 then :
   printf "%s\n" "#define HAVE_LIBPROJ 1" >>confdefs.h
 
@@ -3143,14 +3143,14 @@ fi
 
 if test x$use6 = xyes -a x${proj6api} = xno; then
    as_fn_error $? "Cannot find working proj.h headers and library.
-
-*** You may need to install libproj-dev or similar." "$LINENO" 5
+*** You may need to install libproj-dev or similar! ***
+" "$LINENO" 5
 fi
 
 if test x$use6 = xno -a x${proj4api} = xno; then
    as_fn_error $? "Cannot find working proj_api.h headers and library.
-
-*** You may need to install libproj-dev or similar." "$LINENO" 5
+*** You may need to install libproj-dev or similar! ***
+" "$LINENO" 5
 fi
 
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether to use PROJ6 API" >&5
