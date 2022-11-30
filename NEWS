@@ -1,5 +1,8 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-12	2022-11-30
+    *	switch UCRT Windows flags to use PROJ6 API
+
 1.0-11	2022-01-31
     *	improve detection of correct flags using pkg-config where
 	available including static versions. Unless --enable-proj6
