@@ -9,6 +9,8 @@
 #include <proj_api.h>
 #endif
 
+#define p4error(X) Rf_error("PROJ error: %s", (X))
+
 #define F_INVERSE 1
 #define F_DEG     2
 
@@ -21,7 +23,7 @@ void project_(char **proj, int *n, double *x, double *y, int *f){
   PJ_COORD c;
 
   if (!(pj = proj_create(0, *proj)))
-    error(proj_errno_string(proj_errno(0)));
+    p4error(proj_errno_string(proj_errno(0)));
 
   while (i < j){
     if (ISNA(x[i]) || ISNA(y[i])){ /* if either is NA, set both to NA */
@@ -41,7 +43,7 @@ void project_(char **proj, int *n, double *x, double *y, int *f){
       if (c.uv.u == HUGE_VAL) {
 	int r = proj_errno(pj);
 	proj_destroy(pj);
-	error(proj_errno_string(r));
+	p4error(proj_errno_string(r));
       }
       if (inv && deg) {
 	x[i] = proj_todeg(c.uv.u);
@@ -60,7 +62,7 @@ void project_(char **proj, int *n, double *x, double *y, int *f){
   projPJ pj;
   
   if (!(pj = pj_init_plus(*proj))) 
-    error(pj_strerrno(*pj_get_errno_ref()));
+    p4error(pj_strerrno(*pj_get_errno_ref()));
 
   while (i < j){
     if (ISNA(x[i]) || ISNA(y[i])){ /* if either is NA, set both to NA */
@@ -79,7 +81,7 @@ void project_(char **proj, int *n, double *x, double *y, int *f){
 
       if (c.u == HUGE_VAL) {
 	pj_free(pj);
-	error(pj_strerrno(*pj_get_errno_ref()));
+	p4error(pj_strerrno(*pj_get_errno_ref()));
       }
       if (inv && deg) {
 	x[i] = c.u * RAD_TO_DEG;
@@ -104,12 +106,12 @@ void transform_(char **psrc, char **pdst, int *n, double *x, double *y, double *
   int in_rad2deg = 0, out_rad2deg = 0;
 
   if (!(pj = proj_create_crs_to_crs(0, *psrc, *pdst, 0)))
-    error(proj_errno_string(proj_errno(0)));
+    p4error(proj_errno_string(proj_errno(0)));
 
   if (!(pj2 = proj_normalize_for_visualization(0, pj))) {
     int r = proj_errno(pj);
     proj_destroy(pj);
-    error(proj_errno_string(r));
+    p4error(proj_errno_string(r));
   }
 
   proj_destroy(pj);
@@ -153,17 +155,17 @@ void transform_(char **psrc, char **pdst, int *n, double *x, double *y, double *
   proj_destroy(pj);
 
   if (r)
-    error(proj_errno_string(r));
+    p4error(proj_errno_string(r));
 
 #else
   projPJ ps, pd;
   int r;
 
   if (!(ps = pj_init_plus(*psrc)))
-    error(pj_strerrno(*pj_get_errno_ref()));
+    p4error(pj_strerrno(*pj_get_errno_ref()));
   if (!(pd = pj_init_plus(*pdst))) {
     pj_free(ps);
-    error(pj_strerrno(*pj_get_errno_ref()));
+    p4error(pj_strerrno(*pj_get_errno_ref()));
   }
 
   r = pj_transform(ps, pd, *n, 0, x, y, z);
@@ -172,6 +174,6 @@ void transform_(char **psrc, char **pdst, int *n, double *x, double *y, double *
   pj_free(pd);
 
   if (r)
-    error(pj_strerrno(*pj_get_errno_ref()));
+    p4error(pj_strerrno(*pj_get_errno_ref()));
 #endif
 }

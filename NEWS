@@ -1,5 +1,8 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-14	2024-01-14
+    *	minor change to error messages
+
 1.0-13	2023-06-13
     *	update Rtools43 flags (Windows only)
 
