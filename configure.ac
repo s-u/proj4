@@ -117,13 +117,13 @@ if test x${proj4api} = xno; then
    use6=yes
 fi
 
-if test x$use6 = xyes -a x${proj6api} = xno; then
+if test x${use6}${proj6api} = xyesno; then
    AC_MSG_ERROR([Cannot find working proj.h headers and library.
 *** You may need to install libproj-dev or similar! ***
 ])
 fi
 
-if test x$use6 = xno -a x${proj4api} = xno; then
+if test x${use6}${proj4api} = xnono; then
    AC_MSG_ERROR([Cannot find working proj_api.h headers and library.
 *** You may need to install libproj-dev or similar! ***
 ])
