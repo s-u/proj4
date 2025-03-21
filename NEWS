@@ -1,5 +1,8 @@
 NEWS/ChangeLog for proj4 R package
 
+1.0-15	2025-03-21
+    *	minor update of the configure script
+
 1.0-14	2024-01-14
     *	minor change to error messages
 
